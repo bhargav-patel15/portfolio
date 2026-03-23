@@ -14,10 +14,10 @@ export const profile = {
 };
 
 export const links = {
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
-  leetcode: "https://leetcode.com/yourusername",
-  email: "bhargav@example.com",
+  github: "https://github.com/bhargav-patel15",
+  linkedin: "https://www.linkedin.com/in/bhargav1541/",
+  leetcode: "https://leetcode.com/u/bhargav1504/",
+  email: "bhargavpatel1541@gmail.com",
   // Add more or remove any you don't need:
   // twitter: "https://twitter.com/yourusername",
   // portfolio: "https://yourwebsite.com",
@@ -25,8 +25,8 @@ export const links = {
 
 export const skills = [
   "Java", "Spring Boot", "Microservices", "System Design",
-  "AWS", "REST APIs", "SQL", "Agile / Scrum",
-  "Billing Systems", "Git", "CI/CD", "Mentoring",
+  "AWS", "REST APIs", "DynamoDB", "Maven", "JUnit", "Mockito", "SQL",
+  "Agile / Scrum", "Billing Systems", "Git", "CI/CD", "Mentoring",
 ];
 
 export const certifications = [
@@ -35,7 +35,7 @@ export const certifications = [
     issuer: "Amazon Web Services",
     year: "2024",
     badge: "☁️",
-    link: "#", // Add your credential URL
+    link: "https://drive.google.com/file/d/1lD6_GOxQ2PreyQUNuEp0RC47NgquL0p1/view", // Add your credential URL
   },
   // Add more certifications:
   // {
@@ -50,18 +50,19 @@ export const certifications = [
 export const codingProfiles = [
   {
     platform: "GitHub",
-    handle: "@yourusername",
+    handle: "@bhargav-patel15",
     description: "Open source contributions & personal projects",
-    url: "https://github.com/yourusername",
+    url: "https://github.com/bhargav-patel15",
     icon: "github",
     color: "#6e40c9",
   },
   {
     platform: "LeetCode",
-    handle: "yourusername",
+    handle: "bhargav1504",
     description: "DSA practice & competitive problem solving",
-    url: "https://leetcode.com/yourusername",
+    url: "https://leetcode.com/bhargav1504",
     icon: "leetcode",
     color: "#FFA116",
   },
 ];
+
