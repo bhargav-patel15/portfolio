@@ -7,7 +7,7 @@ export const profile = {
   title: "Backend Software Engineer",
   company: null,
   bio: "Backend Software Engineer with experience building scalable microservices and distributed systems using Java, Spring Boot, and AWS. Proficient in REST API development, cloud services, and event-driven architectures, with a strong focus on system reliability and performance. Skilled in production debugging, CI/CD, and designing efficient backend solutions.",
-  photo: "/portfolio/photo.jp",
+  photo: "https://avatars.githubusercontent.com/bhargav-patel15",
     // Example: photo: "https://avatars.githubusercontent.com/u/YOURID"
   resumeLink: "https://drive.google.com/file/d/1FEAD3Pe8qHxSRJs309GT2S7LOFzwiNY5/view?usp=sharing", // Link to your resume PDF
 };
