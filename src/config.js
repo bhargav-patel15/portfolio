@@ -6,11 +6,13 @@ export const profile = {
   name: "Bhargav Patel",
   title: "Backend Software Engineer II",
   company: "Atlassian",
+  startDate: "Jan 2022",
+  endDate: "Mar 2026",
   bio: "Dedicated Software Engineer II with over 3.5 years of experience at Atlassian in designing and scaling high-impact subscription and billing microservices. Proven track record of driving $15M+ in annual recurring revenue through the development of complex discount models and pricing logic while optimizing system reliability using AWS and AI-powered operational tools. Expert in Java, Spring Boot, and System Design, with a strong focus on mentoring teams and leading Agile ceremonies to improve delivery efficiency.",
   // Add your photo URL here, or use null for initials avatar
-  photo: null,
+  photo: "https://drive.google.com/file/d/1LRsr-XoPbC8-zNhN3ez6aSa9scydxCgZ/view?usp=sharing",
   // Example: photo: "https://avatars.githubusercontent.com/u/YOURID"
-  resumeLink: "#", // Link to your resume PDF
+  resumeLink: "https://drive.google.com/file/d/1FEAD3Pe8qHxSRJs309GT2S7LOFzwiNY5/view?usp=sharing", // Link to your resume PDF
 };
 
 export const links = {
