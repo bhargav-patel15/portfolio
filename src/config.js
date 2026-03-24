@@ -7,7 +7,7 @@ export const profile = {
   title: "Backend Software Engineer",
   company: null,
   bio: "Backend Software Engineer with experience building scalable microservices and distributed systems using Java, Spring Boot, and AWS. Proficient in REST API development, cloud services, and event-driven architectures, with a strong focus on system reliability and performance. Skilled in production debugging, CI/CD, and designing efficient backend solutions.",
-  photo: "https://drive.google.com/file/d/1LRsr-XoPbC8-zNhN3ez6aSa9scydxCgZ/view?usp=sharing",
+  photo: "https://photos.app.goo.gl/y9gtVEozDqtwUZtTA",
     // Example: photo: "https://avatars.githubusercontent.com/u/YOURID"
   resumeLink: "https://drive.google.com/file/d/1FEAD3Pe8qHxSRJs309GT2S7LOFzwiNY5/view?usp=sharing", // Link to your resume PDF
 };
@@ -17,33 +17,41 @@ export const profile = {
 // Set current: true if it's your current job (shows "Present" instead of end date).
 export const experience = [
   {
-    role: "Backend Software Engineer II",
+    role: "Software Engineer II",
     company: "Atlassian",
-    startDate: "Jan 2022",
+    startDate: "Sept 2025",
     endDate: "Mar 2026",
     current: false,
-    location: "Remote",
+    location: "Bengaluru, India",
     description: [
       "Led end-to-end development of Partner Incentive promotions, migrating from multi-year tiered discounts to configurable discount models, contributing to $10M in annual recurring revenue (ARR).",
       "Built an AI-powered agent using LLM-based analysis to investigate operational failures via AWS DLQ, Splunk logs, and Stripe data, improving on-call troubleshooting efficiency by 20–30%.",
-      "Modernized microservices deployment by migrating from Stash/Bamboo to Bitbucket pipelines, reducing build time from 15 to 9 minutes and saving 10,000 minutes/month in build costs.",
-      "Designed and developed Partner & Blended Margin logic for subscription pricing, enabling accurate partner margin calculations and contributing to $5M in additional annual recurring revenue.",
     ],
-    // Add more bullet points above as needed
   },
-  // ── ADD A NEW JOB LIKE THIS ──
-  // {
-  //   role: "Backend Engineer I",
-  //   company: "Previous Company",
-  //   startDate: "Jun 2020",
-  //   endDate: "Dec 2021",
-  //   current: false,
-  //   location: "Bangalore, India",
-  //   description: [
-  //     "What you did here.",
-  //     "Another achievement.",
-  //   ],
-  // },
+  {
+    role: "Software Engineer",
+    company: "Atlassian",
+    startDate: "Jul 2022",
+    endDate: "Aug 2025",
+    current: false,
+    location: "Bengaluru, India",
+    description: [
+      "Designed Partner & Blended Margin logic for subscription pricing, enabling accurate partner margin calculations and contributing to $5M in annual recurring revenue (ARR).",
+      "Modernized microservices deployment by migrating from Stash/Bamboo to Bitbucket pipelines, reducing build time from 15 to 9 minutes and saving 10,000 minutes/month in build costs.",
+    ],
+  },
+  {
+    role: "Software Development Engineer Intern",
+    company: "Atlassian",
+    startDate: "Jan 2022",
+    endDate: "Jun 2022",
+    current: false,
+    location: "Remote",
+    description: [
+      "Introduced Post Deployment Verification (PDV) testing for critical subscription flows in staging, with hourly automated runs via Pollinators and Slack notifications to proactively catch production issues.",
+      "Implemented TTL in AWS DynamoDB to automatically expire records for external events, improving event handling efficiency.",
+    ],
+  },
 ];
 
 export const links = {
