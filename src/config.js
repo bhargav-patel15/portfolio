@@ -2,7 +2,7 @@
 //  PORTFOLIO CONFIG — Edit everything here!
 // ============================================================
 
-export const profile = {
+export const experience = {
   name: "Bhargav Patel",
   title: "Backend Software Engineer II",
   company: "Atlassian",
