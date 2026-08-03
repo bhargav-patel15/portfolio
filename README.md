@@ -22,11 +22,25 @@ npm run dev
 **All editable content is in one file: `src/config.js`**
 
 Open `src/config.js` and update:
-- Your name, title, bio
+- Your name, title, bio, status badge
+- `taglines` — phrases that cycle in the hero typewriter effect
+- `stats` — the animated counters shown under the bio (ARR, incident scale, etc.)
 - Your photo URL
 - GitHub, LinkedIn, LeetCode, email links
-- Skills list
-- Certifications
+- `experience` — work history bullets
+- `education` — school, degree, dates, score
+- `skillCategories` — skills grouped by category (also drives the filter tabs on the Skills section)
+- `certifications`
+
+## ✨ What's new in this version
+- Light mode is now the default (toggle still available; your choice is remembered via `localStorage`)
+- Education section
+- Scroll-reveal animations on every section
+- Animated stat counters in the hero
+- Typewriter effect cycling through `profile.taglines`
+- Skill category filter tabs
+- Active-section highlighting in the nav bar as you scroll
+- Click-to-copy email button in Contact
 
 ---
 

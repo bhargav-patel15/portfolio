@@ -1,5 +1,5 @@
-import { profile, links, skills, certifications, codingProfiles, experience } from './config.js';
-import { useState, useEffect } from 'react';
+import { profile, links, skillCategories, certifications, codingProfiles, experience, education, stats } from './config.js';
+import { useState, useEffect, useRef } from 'react';
 
 // ── Icons ─────────────────────────────────────────────────
 const GithubIcon = () => (
@@ -74,14 +74,144 @@ const MapPinIcon = () => (
     <circle cx="12" cy="10" r="3"/>
   </svg>
 );
+const GradCapIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="16" height="16">
+    <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+    <path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>
+  </svg>
+);
+const CopyIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="14" height="14">
+    <rect x="9" y="9" width="12" height="12" rx="2"/>
+    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+  </svg>
+);
+const CheckIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+);
+
+// ── Reveal-on-scroll wrapper ────────────────────────────────
+function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <Tag
+      ref={ref}
+      className={`reveal ${visible ? 'reveal--visible' : ''} ${className}`}
+      style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+// ── Animated count-up number ───────────────────────────────
+function CountUp({ value, prefix = '', suffix = '', duration = 1400 }) {
+  const ref = useRef(null);
+  const [display, setDisplay] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started.current) {
+            started.current = true;
+            const start = performance.now();
+            const tick = (now) => {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+              setDisplay(Math.round(eased * value));
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [value, duration]);
+
+  return (
+    <span ref={ref} className="stat__number">
+      {prefix}{display.toLocaleString()}{suffix}
+    </span>
+  );
+}
+
+// ── Typewriter effect for rotating hero taglines ───────────
+function Typewriter({ words = [], typeSpeed = 55, deleteSpeed = 28, pause = 1400 }) {
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!words.length) return;
+    const current = words[wordIndex % words.length];
+    let timeout;
+
+    if (!deleting && text === current) {
+      timeout = setTimeout(() => setDeleting(true), pause);
+    } else if (deleting && text === '') {
+      setDeleting(false);
+      setWordIndex((i) => (i + 1) % words.length);
+    } else {
+      timeout = setTimeout(() => {
+        setText(current.slice(0, text.length + (deleting ? -1 : 1)));
+      }, deleting ? deleteSpeed : typeSpeed);
+    }
+    return () => clearTimeout(timeout);
+  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause]);
+
+  return (
+    <span className="typewriter">
+      {text}
+      <span className="typewriter__cursor">|</span>
+    </span>
+  );
+}
 
 // ── Main App ──────────────────────────────────────────────
-const NAV_ITEMS = ['About', 'Experience', 'Skills', 'Coding', 'Certifications', 'Contact'];
+const NAV_ITEMS = ['About', 'Experience', 'Education', 'Skills', 'Coding', 'Certifications', 'Contact'];
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const saved = window.localStorage.getItem('theme');
+    if (saved) return saved === 'dark';
+    return false; // light mode by default
+  });
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
+  const [skillFilter, setSkillFilter] = useState('All');
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -91,6 +221,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    window.localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
   // Close menu on resize to desktop
@@ -100,7 +231,32 @@ export default function App() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  // Scrollspy — highlight the nav link for the section in view
+  useEffect(() => {
+    const sections = NAV_ITEMS.map((s) => document.getElementById(s.toLowerCase())).filter(Boolean);
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
+
+  const copyEmail = () => {
+    navigator.clipboard?.writeText(links.email).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    });
+  };
+
   const initials = profile.name.split(' ').map(n => n[0]).join('');
+  const filteredCategories = skillFilter === 'All'
+    ? skillCategories
+    : skillCategories.filter((c) => c.category === skillFilter);
 
   return (
     <div className="app">
@@ -112,7 +268,13 @@ export default function App() {
           {/* Desktop links */}
           <div className="nav__desktop">
             {NAV_ITEMS.map(s => (
-              <a key={s} href={`#${s.toLowerCase()}`} className="nav__link">{s}</a>
+              <a
+                key={s}
+                href={`#${s.toLowerCase()}`}
+                className={`nav__link ${activeSection === s.toLowerCase() ? 'nav__link--active' : ''}`}
+              >
+                {s}
+              </a>
             ))}
             <button className="theme-toggle" onClick={() => setIsDark(!isDark)} title="Toggle theme">
               {isDark ? <SunIcon /> : <MoonIcon />}
@@ -149,14 +311,14 @@ export default function App() {
             }
             <div className="hero__status">
               <span className="status-dot" />
-              Open to Opportunities
+              {profile.status}
             </div>
           </div>
           <div className="hero__text">
             <p className="hero__greeting">Hi, I'm</p>
             <h1 className="hero__name">{profile.name}</h1>
             <p className="hero__title">
-              <span className="accent">{profile.title}</span>
+              <span className="accent"><Typewriter words={profile.taglines?.length ? profile.taglines : [profile.title]} /></span>
               {profile.company && <> @ <span className="company">{profile.company}</span></>}
             </p>
             <p className="hero__bio">{profile.bio}</p>
@@ -176,100 +338,160 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        {/* Stat strip */}
+        {stats?.length > 0 && (
+          <Reveal className="stat-strip" as="div">
+            <div className="stat-strip__inner">
+              {stats.map((s, i) => (
+                <div key={i} className="stat">
+                  <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />
+                  <span className="stat__label">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        )}
       </section>
 
       {/* ── EXPERIENCE ── */}
       <section className="section section--alt" id="experience">
         <div className="section__inner">
-          <h2 className="section__title">Work Experience</h2>
-          <p className="section__sub">My professional journey</p>
+          <Reveal><h2 className="section__title">Work Experience</h2></Reveal>
+          <Reveal delay={60}><p className="section__sub">My professional journey</p></Reveal>
           <div className="timeline">
             {experience.map((job, i) => (
-              <div key={i} className="timeline__item">
-                <div className="timeline__dot">
-                  <BriefcaseIcon />
-                </div>
-                <div className="timeline__card">
-                  <div className="timeline__header">
-                    <div className="timeline__title-group">
-                      <h3 className="timeline__role">{job.role}</h3>
-                      <span className="timeline__company">{job.company}</span>
-                    </div>
-                    <div className="timeline__meta">
-                      <span className="timeline__date">
-                        <CalendarIcon />
-                        {job.startDate} — {job.current ? <span className="timeline__present">Present</span> : job.endDate}
-                      </span>
-                      {job.location && (
-                        <span className="timeline__location">
-                          <MapPinIcon />{job.location}
-                        </span>
-                      )}
-                    </div>
+              <Reveal key={i} delay={i * 80} className="timeline__item-wrap">
+                <div className="timeline__item">
+                  <div className="timeline__dot">
+                    <BriefcaseIcon />
                   </div>
-                  <ul className="timeline__bullets">
-                    {job.description.map((point, j) => (
-                      <li key={j} className="timeline__bullet">{point}</li>
-                    ))}
-                  </ul>
+                  <div className="timeline__card">
+                    <div className="timeline__header">
+                      <div className="timeline__title-group">
+                        <h3 className="timeline__role">{job.role}</h3>
+                        <span className="timeline__company">{job.company}</span>
+                      </div>
+                      <div className="timeline__meta">
+                        <span className="timeline__date">
+                          <CalendarIcon />
+                          {job.startDate} — {job.current ? <span className="timeline__present">Present</span> : job.endDate}
+                        </span>
+                        {job.location && (
+                          <span className="timeline__location">
+                            <MapPinIcon />{job.location}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <ul className="timeline__bullets">
+                      {job.description.map((point, j) => (
+                        <li key={j} className="timeline__bullet">{point}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── EDUCATION ── */}
+      {education?.length > 0 && (
+        <section className="section" id="education">
+          <div className="section__inner">
+            <Reveal><h2 className="section__title">Education</h2></Reveal>
+            <Reveal delay={60}><p className="section__sub">Academic background</p></Reveal>
+            <div className="edu-list">
+              {education.map((ed, i) => (
+                <Reveal key={i} delay={i * 80} as="div">
+                  <div className="edu-card">
+                    <div className="edu-card__icon"><GradCapIcon /></div>
+                    <div className="edu-card__body">
+                      <h3 className="edu-card__school">{ed.school}</h3>
+                      <p className="edu-card__degree">{ed.degree}</p>
+                      <div className="edu-card__meta">
+                        <span className="timeline__date"><CalendarIcon />{ed.startDate} — {ed.endDate}</span>
+                        {ed.score && <span className="edu-card__score">{ed.score}</span>}
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── SKILLS ── */}
-      <section className="section" id="skills">
+      <section className="section section--alt" id="skills">
         <div className="section__inner">
-          <h2 className="section__title">Tech Stack</h2>
-          <p className="section__sub">Technologies & tools I work with</p>
+          <Reveal><h2 className="section__title">Tech Stack</h2></Reveal>
+          <Reveal delay={60}><p className="section__sub">Technologies & tools I work with</p></Reveal>
+          <Reveal delay={100}>
+            <div className="skill-tabs">
+              {['All', ...skillCategories.map((c) => c.category)].map((cat) => (
+                <button
+                  key={cat}
+                  className={`skill-tab ${skillFilter === cat ? 'skill-tab--active' : ''}`}
+                  onClick={() => setSkillFilter(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </Reveal>
           <div className="skills-grid">
-            {skills.map((skill, i) => (
-              <div key={i} className="skill-chip">{skill}</div>
+            {filteredCategories.flatMap((c) => c.items).map((skill, i) => (
+              <div key={`${skillFilter}-${skill}-${i}`} className="skill-chip">{skill}</div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── CODING PROFILES ── */}
-      <section className="section section--alt" id="coding">
+      <section className="section" id="coding">
         <div className="section__inner">
-          <h2 className="section__title">Coding Profiles</h2>
-          <p className="section__sub">Find me across platforms</p>
+          <Reveal><h2 className="section__title">Coding Profiles</h2></Reveal>
+          <Reveal delay={60}><p className="section__sub">Find me across platforms</p></Reveal>
           <div className="cards-grid">
             {codingProfiles.map((p, i) => (
-              <a key={i} href={p.url} target="_blank" rel="noreferrer" className="card card--link">
-                <div className="card__icon" style={{ background: `${p.color}22`, color: p.color }}>
-                  {p.icon === 'github' ? <GithubIcon /> : <LeetcodeIcon />}
-                </div>
-                <div className="card__body">
-                  <h3 className="card__title">{p.platform}</h3>
-                  <p className="card__handle">{p.handle}</p>
-                  <p className="card__desc">{p.description}</p>
-                </div>
-                <div className="card__arrow"><ExternalLinkIcon /></div>
-              </a>
+              <Reveal key={i} delay={i * 80} as="div">
+                <a href={p.url} target="_blank" rel="noreferrer" className="card card--link">
+                  <div className="card__icon" style={{ background: `${p.color}22`, color: p.color }}>
+                    {p.icon === 'github' ? <GithubIcon /> : <LeetcodeIcon />}
+                  </div>
+                  <div className="card__body">
+                    <h3 className="card__title">{p.platform}</h3>
+                    <p className="card__handle">{p.handle}</p>
+                    <p className="card__desc">{p.description}</p>
+                  </div>
+                  <div className="card__arrow"><ExternalLinkIcon /></div>
+                </a>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── CERTIFICATIONS ── */}
-      <section className="section" id="certifications">
+      <section className="section section--alt" id="certifications">
         <div className="section__inner">
-          <h2 className="section__title">Certifications</h2>
-          <p className="section__sub">Credentials & accomplishments</p>
+          <Reveal><h2 className="section__title">Certifications</h2></Reveal>
+          <Reveal delay={60}><p className="section__sub">Credentials & accomplishments</p></Reveal>
           <div className="certs-list">
             {certifications.map((cert, i) => (
-              <a key={i} href={cert.link} target="_blank" rel="noreferrer" className="cert-card">
-                <div className="cert-card__badge">{cert.badge}</div>
-                <div className="cert-card__body">
-                  <h3 className="cert-card__name">{cert.name}</h3>
-                  <p className="cert-card__meta">{cert.issuer} · {cert.year}</p>
-                </div>
-                <div className="cert-card__arrow"><ExternalLinkIcon /></div>
-              </a>
+              <Reveal key={i} delay={i * 80} as="div">
+                <a href={cert.link} target="_blank" rel="noreferrer" className="cert-card">
+                  <div className="cert-card__badge">{cert.badge}</div>
+                  <div className="cert-card__body">
+                    <h3 className="cert-card__name">{cert.name}</h3>
+                    <p className="cert-card__meta">{cert.issuer}{cert.year ? ` · ${cert.year}` : ''}</p>
+                  </div>
+                  <div className="cert-card__arrow"><ExternalLinkIcon /></div>
+                </a>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -278,14 +500,20 @@ export default function App() {
       {/* ── CONTACT ── */}
       <section className="section section--alt" id="contact">
         <div className="section__inner section__inner--center">
-          <h2 className="section__title">Get In Touch</h2>
-          <p className="section__sub">Let's connect and build something great</p>
-          <div className="contact-grid">
-            <a href={`mailto:${links.email}`} className="contact-item"><EmailIcon /><span>{links.email}</span></a>
-            <a href={links.linkedin} target="_blank" rel="noreferrer" className="contact-item"><LinkedInIcon /><span>LinkedIn</span></a>
-            <a href={links.github} target="_blank" rel="noreferrer" className="contact-item"><GithubIcon /><span>GitHub</span></a>
-            <a href={links.leetcode} target="_blank" rel="noreferrer" className="contact-item"><LeetcodeIcon /><span>LeetCode</span></a>
-          </div>
+          <Reveal><h2 className="section__title">Get In Touch</h2></Reveal>
+          <Reveal delay={60}><p className="section__sub">Let's connect and build something great</p></Reveal>
+          <Reveal delay={100}>
+            <div className="contact-grid">
+              <button onClick={copyEmail} className="contact-item contact-item--btn">
+                {copied ? <CheckIcon /> : <EmailIcon />}
+                <span>{copied ? 'Copied!' : links.email}</span>
+                {!copied && <CopyIcon />}
+              </button>
+              <a href={links.linkedin} target="_blank" rel="noreferrer" className="contact-item"><LinkedInIcon /><span>LinkedIn</span></a>
+              <a href={links.github} target="_blank" rel="noreferrer" className="contact-item"><GithubIcon /><span>GitHub</span></a>
+              <a href={links.leetcode} target="_blank" rel="noreferrer" className="contact-item"><LeetcodeIcon /><span>LeetCode</span></a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
