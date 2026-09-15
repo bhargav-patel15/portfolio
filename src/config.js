@@ -19,7 +19,7 @@ export const profile = {
   bio: "Software Engineer II with ~4 years building scalable microservices and distributed systems on Java and Spring Boot. I've shipped subscription-billing features touching $15M+ in combined ARR at Atlassian, resolved a 725K-message AWS SQS backlog, and built an LLM-powered agent to speed up on-call incident investigation. Comfortable across REST API design, event-driven architectures, cloud infra (AWS), and production debugging.",
   photo: "https://avatars.githubusercontent.com/bhargav-patel15",
   // Example: photo: "https://avatars.githubusercontent.com/u/YOURID"
-  resumeLink: "https://drive.google.com/file/d/1FEAD3Pe8qHxSRJs309GT2S7LOFzwiNY5/view?usp=sharing",
+  resumeLink: "https://drive.google.com/file/d/1ei_FvjbrMdAwWNSplZ5ZowXSidv_Ha4I/view?usp=sharing",
   status: "Open to Opportunities", // hero badge text — change to "Open to Work" etc.
 };
 
