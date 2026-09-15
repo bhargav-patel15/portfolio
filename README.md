@@ -1,109 +1,49 @@
 # Bhargav Patel — Portfolio
 
-A clean, dark-themed personal portfolio built with React + Vite, ready to deploy to GitHub Pages.
+A responsive React + Vite portfolio for GitHub Pages, with a charcoal-and-lime visual design and light theme.
 
----
+## Local development
 
-## 🚀 Quick Start (Local Preview)
-
-```bash
-# 1. Install dependencies
+```sh
 npm install
-
-# 2. Run local dev server
 npm run dev
-# Open http://localhost:5173
 ```
 
----
+Open the local URL printed by Vite (normally `http://localhost:5173/portfolio/`).
 
-## ✏️ How to Edit Your Portfolio
+## Content
 
-**All editable content is in one file: `src/config.js`**
+Edit `src/config.js` for profile information, links, impact metrics, work highlights, experience, skills, education, and certifications. Work highlights describe professional accomplishments; the animated diagrams are illustrative, not live production telemetry. Keep claims and employment dates accurate when updating content.
 
-Open `src/config.js` and update:
-- Your name, title, bio, status badge
-- `taglines` — phrases that cycle in the hero typewriter effect
-- `stats` — the animated counters shown under the bio (ARR, incident scale, etc.)
-- Your photo URL
-- GitHub, LinkedIn, LeetCode, email links
-- `experience` — work history bullets
-- `education` — school, degree, dates, score
-- `skillCategories` — skills grouped by category (also drives the filter tabs on the Skills section)
-- `certifications`
+- `highlights`: illustrated work cards with expandable engineering details
+- `experience`: role summaries and achievement bullets; extra bullets expand on demand
+- `skillCategories`: toolkit categories, descriptions, symbols, and skills; filters render automatically
+- `profile.photo`: existing GitHub avatar URL, with an initials fallback on image failure
 
-## ✨ What's new in this version
-- Light mode is now the default (toggle still available; your choice is remembered via `localStorage`)
-- Education section
-- Scroll-reveal animations on every section
-- Animated stat counters in the hero
-- Typewriter effect cycling through `profile.taglines`
-- Skill category filter tabs
-- Active-section highlighting in the nav bar as you scroll
-- Click-to-copy email button in Contact
+Layout and interactions live in `src/App.jsx`; responsive styles and animations live in `src/App.css`. The hero architecture playground contains illustrative node descriptions in `SystemMap`.
 
----
+## Interactions and accessibility
 
-## 🌐 Deploy to GitHub Pages (Step-by-Step)
+- Click architecture nodes to explore backend responsibilities.
+- Filter toolkit categories and expand contribution details.
+- Switch between persistent light and dark themes.
+- Use the mobile navigation, email link, copy-email button, and profile links.
+- Keyboard focus indicators, skip navigation, semantic headings, and reduced-motion styles are included.
+- Google Fonts and the GitHub avatar require connectivity; system fonts and initials provide fallbacks.
 
-### Step 1: Create a GitHub Repository
-1. Go to https://github.com/new
-2. Create a new repo, e.g. `portfolio` (can be private or public)
-3. Copy the repo URL
+## Build and publish
 
-### Step 2: Push your code
-```bash
-git init
-git add .
-git commit -m "Initial portfolio"
-git branch -M main
-git remote add origin https://github.com/YOURUSERNAME/YOURREPO.git
-git push -u origin main
+```sh
+npm run build
+npm run preview
 ```
 
-### Step 3: Update vite.config.js
-Open `vite.config.js` and change the base to match your repo name:
-```js
-base: '/YOURREPO/',   // e.g. '/portfolio/'
-```
+The existing Vite base is `/portfolio/`. Confirm it matches the GitHub Pages repository path before publishing. For an account-root site or custom domain, adjust the base accordingly.
 
-### Step 4: Install gh-pages and deploy
-```bash
-npm install
+To publish using the existing configured Git remote and `gh-pages` workflow:
+
+```sh
 npm run deploy
 ```
 
-This builds the project and pushes to the `gh-pages` branch automatically.
-
-### Step 5: Enable GitHub Pages
-1. Go to your repo on GitHub
-2. Settings → Pages
-3. Source: **Deploy from a branch**
-4. Branch: **gh-pages** / root
-5. Save
-
-Your portfolio will be live at:
-**https://YOURUSERNAME.github.io/YOURREPO/**
-
----
-
-## 📸 Adding Your Profile Photo
-
-Option A — Use your GitHub avatar:
-```js
-// In src/config.js
-photo: "https://avatars.githubusercontent.com/u/YOUR_GITHUB_USER_ID",
-```
-
-Option B — Upload a photo to your repo:
-1. Add your photo to the `public/` folder (e.g. `public/photo.jpg`)
-2. Set `photo: "/YOURREPO/photo.jpg"` in config.js
-
----
-
-## 🔄 Updating Your Portfolio Later
-
-1. Edit `src/config.js` (or any component)
-2. Run `npm run deploy`
-
-That's it — changes go live in ~1 minute.
+Deployment publishes `dist` to the `gh-pages` branch. In GitHub Pages settings, select that branch as the source. Local edits and builds alone do not change the hosted site.

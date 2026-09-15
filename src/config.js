@@ -16,10 +16,11 @@ export const profile = {
     "Java • Spring Boot • AWS",
     "Building resilient microservices",
   ],
-  bio: "Software Engineer II with ~4 years building scalable microservices and distributed systems on Java and Spring Boot. I've shipped subscription-billing features touching $15M+ in combined ARR at Atlassian, resolved a 725K-message AWS SQS backlog, and built an LLM-powered agent to speed up on-call incident investigation. Comfortable across REST API design, event-driven architectures, cloud infra (AWS), and production debugging.",
+  bio: "I build reliable backend systems that turn complex problems into seamless product experiences. Previously at Atlassian, working across subscription billing, distributed systems, and developer tooling.",
   photo: "https://avatars.githubusercontent.com/bhargav-patel15",
   // Example: photo: "https://avatars.githubusercontent.com/u/YOURID"
-  resumeLink: "https://drive.google.com/file/d/1FEAD3Pe8qHxSRJs309GT2S7LOFzwiNY5/view?usp=sharing",
+  resumeLink:
+    "https://drive.google.com/file/d/1FEAD3Pe8qHxSRJs309GT2S7LOFzwiNY5/view?usp=sharing",
   status: "Open to Opportunities", // hero badge text — change to "Open to Work" etc.
 };
 
@@ -27,10 +28,20 @@ export const profile = {
 // Small animated counters shown under the bio. Keep to 3–4 for best layout.
 // `value` is the number that counts up; `prefix`/`suffix` decorate it.
 export const stats = [
-  { value: 10, prefix: "$", suffix: "M", label: "ARR — Partner Incentive Promotions" },
-  { value: 5, prefix: "$", suffix: "M", label: "ARR — Partner & Blended Margin" },
+  {
+    value: 10,
+    prefix: "$",
+    suffix: "M",
+    label: "ARR — Partner Incentive Promotions",
+  },
+  {
+    value: 5,
+    prefix: "$",
+    suffix: "M",
+    label: "ARR — Partner & Blended Margin",
+  },
   { value: 725, suffix: "K", label: "Queued SQS Messages Resolved" },
-  { value: 30, suffix: "%", label: "On-call Efficiency Improvement" },
+  { value: "20–30", suffix: "%", label: "Faster On-call Troubleshooting" },
 ];
 
 // ── Work Experience ──────────────────────────────────────
@@ -39,15 +50,17 @@ export const stats = [
 export const experience = [
   {
     role: "Software Engineer II",
+    summary:
+      "Owned complex billing features, production reliability, and tooling that helped the team ship faster.",
     company: "Atlassian",
     startDate: "Sept 2025",
     endDate: "Mar 2026",
     current: false,
     location: "Bengaluru, India",
     description: [
-      "Led end-to-end development of Partner Incentive promotions, enabling migration from multi-year tiered discounts to configurable discount models for partner subscriptions, contributing to $10M in annual recurring revenue (ARR).",
-      "Investigated and mitigated an AWS SQS rate-limit incident with 725K queued messages, restoring service availability and improving system stability through high-throughput queue configurations and scaled processing capacity.",
-      "Built an AI-powered agent using LLM-based analysis to investigate operational failures by processing AWS DLQ messages, Splunk logs, and Stripe data via MCP server integrations, enabling automated root cause detection, error categorization, and failure grouping — improving on-call troubleshooting efficiency by 20–30%.",
+      "Delivered Partner Incentive promotions end to end, replacing multi-year tiered discounts with configurable subscription discounts and contributing to $10M ARR.",
+      "Recovered an AWS SQS backlog of 725K messages during a rate-limit incident by tuning queue throughput and scaling processing capacity, restoring service availability.",
+      "Built an LLM-powered investigation agent connecting AWS DLQ messages, Splunk logs, and Stripe data through MCP integrations. Automated failure grouping and root cause analysis improved on-call troubleshooting efficiency by 20–30%.",
       "Modernized microservices deployment by moving from Stash/Bamboo to Bitbucket pipelines, reducing build time from 15 to 9 minutes, accelerating PR merges, saving 10,000 minutes/month and reducing build costs.",
       "Designed and delivered Ramp Pricing, supporting scheduled subscriptions across Atlassian cloud products with upfront or period-based charges; implemented subscription update APIs, maintained backward compatibility, and added bill estimation to preview subscription pricing.",
       "Mentored new hires on core subscription services to accelerate onboarding and ramp-up time.",
@@ -57,15 +70,17 @@ export const experience = [
   },
   {
     role: "Software Engineer",
+    summary:
+      "Built the foundations for flexible subscription pricing and safer platform migrations.",
     company: "Atlassian",
     startDate: "Jul 2022",
     endDate: "Aug 2025",
     current: false,
     location: "Bengaluru, India",
     description: [
-      "Designed and developed Partner & Blended Margin logic for subscription pricing, enabling accurate partner margin calculations and contributing to $5M in annual recurring revenue (ARR).",
-      "Migrated 13 subscription database tables to the vNext platform, defining configurations and building migration scripts while setting up alerts for data loss and ingestion latency.",
-      "Implemented Grace Period support for subscriptions, allowing customers additional time near cancellation to finalize deals; extended existing REST APIs and subscription lifecycle flows to support the feature.",
+      "Delivered Partner & Blended Margin pricing logic for accurate partner margin calculations, contributing to $5M ARR.",
+      "Migrated 13 subscription tables to vNext, building migration scripts and configurations with alerts for data loss and ingestion latency.",
+      "Extended REST APIs and subscription lifecycle flows with a grace period, giving customers more time to finalize deals before cancellation.",
       "Integrated mutation testing to strengthen test suites, increasing overall test coverage by 10%.",
       "Led Agile team ceremonies including sprint planning and retrospectives, improving team alignment and delivery efficiency.",
       "Maintained the reliability of high-scale microservices by monitoring AWS SQS Dead Letter Queues (DLQs), fixing underlying bugs, and restoring data integrity.",
@@ -73,6 +88,8 @@ export const experience = [
   },
   {
     role: "Software Development Engineer Intern",
+    summary:
+      "Strengthened release confidence and subscription lifecycle testing.",
     company: "Atlassian",
     startDate: "Jan 2022",
     endDate: "Jun 2022",
@@ -89,7 +106,8 @@ export const experience = [
 // ── Education ─────────────────────────────────────────────
 export const education = [
   {
-    school: "Dhirubhai Ambani Institute of Information and Communication Technology",
+    school:
+      "Dhirubhai Ambani Institute of Information and Communication Technology",
     degree: "B.Tech, Information and Communication Technology (Minor: CS)",
     startDate: "Jul 2018",
     endDate: "Jun 2022",
@@ -111,24 +129,93 @@ export const links = {
 // The Skills section renders filter tabs from these category names automatically.
 export const skillCategories = [
   {
-    category: "Languages",
-    items: ["Java", "C++", "SQL"],
+    category: "Backend",
+    icon: "{ }",
+    description: "Services and APIs for complex subscription lifecycles.",
+    items: ["Java", "Spring Boot", "REST APIs", "Microservices", "Maven"],
   },
   {
-    category: "Frameworks & Cloud",
-    items: ["Spring Boot", "AWS (SQS, DLQ, DynamoDB)", "Microservices", "REST APIs", "Docker", "Maven"],
+    category: "Cloud & Data",
+    icon: "▱",
+    description: "Event-driven processing and reliable data flows.",
+    items: ["AWS SQS", "Dead Letter Queues", "DynamoDB", "SQL", "Docker"],
   },
   {
-    category: "Testing",
-    items: ["JUnit", "Mockito", "Mutation Testing"],
+    category: "Quality & Delivery",
+    icon: "✓",
+    description: "Confidence from local tests to production releases.",
+    items: [
+      "JUnit",
+      "Mockito",
+      "Mutation Testing",
+      "Post-deployment Verification",
+      "Bitbucket Pipelines",
+      "Git",
+    ],
+  },
+  {
+    category: "AI & Observability",
+    icon: "✳",
+    description: "Connecting operational signals to actionable insights.",
+    items: [
+      "LLM-powered Agents",
+      "MCP Integrations",
+      "Splunk",
+      "Incident Investigation",
+      "Production Debugging",
+    ],
+  },
+  {
+    category: "Foundations",
+    icon: "⌘",
+    description: "The fundamentals behind thoughtful system design.",
+    items: [
+      "System Design",
+      "Data Structures",
+      "Algorithms",
+      "C++",
+      "OOP",
+      "DBMS",
+    ],
   },
   {
     category: "Developer Tools",
-    items: ["Git", "IntelliJ", "VS Code", "Bitbucket", "JIRA", "Postman"],
+    icon: "⌥",
+    description: "A practical toolkit for collaborative engineering.",
+    items: ["IntelliJ", "VS Code", "Postman", "Jira", "Agile / Scrum"],
+  },
+];
+
+export const highlights = [
+  {
+    type: "billing",
+    category: "SUBSCRIPTION PLATFORMS",
+    title: "Flexible pricing. Tangible growth.",
+    description:
+      "Partner promotions and margin capabilities contributing to $15M in combined annual recurring revenue.",
+    tags: ["Java", "Spring Boot", "REST APIs"],
+    detail:
+      "Delivered configurable Partner Incentive promotions ($10M ARR) and Partner & Blended Margin logic ($5M ARR). Also developed Ramp Pricing with scheduled charges, subscription update APIs, backward compatibility, and bill estimation.",
   },
   {
-    category: "Concepts",
-    items: ["Data Structures", "Algorithms", "OOP", "System Design", "DBMS", "SDLC", "Agile / Scrum"],
+    type: "queue",
+    category: "PRODUCTION RELIABILITY",
+    title: "725K messages. A path to recovery.",
+    description:
+      "Investigated an AWS SQS rate-limit incident and restored processing for a substantial message backlog.",
+    tags: ["AWS SQS", "Distributed Systems"],
+    detail:
+      "Mitigated the incident through high-throughput queue configuration and scaled processing capacity. Ongoing work included monitoring dead letter queues, resolving underlying bugs, and restoring subscription data integrity.",
+  },
+  {
+    type: "ai",
+    category: "DEVELOPER PRODUCTIVITY",
+    title: "Less searching. Faster answers.",
+    description:
+      "An LLM-powered investigation agent that improved on-call troubleshooting efficiency by 20–30%.",
+    tags: ["LLMs", "MCP", "Splunk"],
+    detail:
+      "Connected AWS DLQ messages, Splunk logs, and Stripe data through MCP server integrations. The agent helped identify root causes, categorize errors, and group related failures for on-call engineers.",
   },
 ];
 
