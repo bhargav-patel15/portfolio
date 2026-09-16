@@ -93,7 +93,7 @@ em {
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 .eyebrow {
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1.6px;
   color: var(--accent);
   display: inline-flex;
@@ -154,7 +154,7 @@ header {
 }
 .wordmark small {
   font:
-    11px ui-monospace,
+    13px ui-monospace,
     monospace;
   color: var(--muted);
   letter-spacing: 0;
@@ -163,7 +163,7 @@ header {
 .nav-links {
   display: flex;
   gap: 27px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 .nav-links a:hover,
@@ -181,7 +181,7 @@ header {
   padding: 8px;
 }
 .nav-resume {
-  font-size: 12px;
+  font-size: 14px;
   border: 1px solid var(--line);
   padding: 10px 14px;
   border-radius: 5px;
@@ -201,7 +201,7 @@ header {
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.5px;
 }
 .hero-topline > span:first-child {
@@ -211,7 +211,7 @@ header {
 }
 .hero-topline .mono {
   padding-top: 9px;
-  font-size: 10px;
+  font-size: 12px;
 }
 .hero-grid {
   display: grid;
@@ -221,7 +221,7 @@ header {
   padding: 50px 0;
 }
 .intro {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 20px;
 }
 .wave {
@@ -239,7 +239,7 @@ h1 {
 }
 .hero-description {
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   max-width: 440px;
   margin: 24px 0;
 }
@@ -252,7 +252,7 @@ h1 {
   align-items: center;
   gap: 25px;
   padding: 13px 19px;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 5px;
   transition:
     transform 0.2s,
@@ -288,13 +288,13 @@ h1 {
   place-items: center;
 }
 .profile-line strong {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .profile-line div > span {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 4px;
 }
 .profile-code {
@@ -327,7 +327,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding: 0 17px;
-  font: 10px monospace;
+  font: 12px monospace;
   color: var(--muted);
 }
 .window-dots {
@@ -356,11 +356,11 @@ h1 {
   gap: 8px;
 }
 .map-heading .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 .tiny-label {
-  font-size: 7px;
+  font-size: 9px;
   color: var(--muted);
   border: 1px solid var(--line);
   padding: 4px 5px;
@@ -406,12 +406,12 @@ h1 {
 }
 .system-node > span:not(.node-icon) {
   display: block;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 .system-node small {
   display: block;
-  font-size: 8px;
+  font-size: 10px;
   color: var(--muted);
   margin-top: 5px;
 }
@@ -449,7 +449,7 @@ h1 {
 }
 .system-detail p {
   font:
-    10px/1.7 ui-monospace,
+    12px/1.7 ui-monospace,
     monospace;
   color: var(--muted);
 }
@@ -460,7 +460,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font-size: 8px;
+  font-size: 10px;
   padding: 0 18px 17px;
   color: var(--muted);
 }
@@ -472,7 +472,7 @@ h1 {
   margin-top: 26px;
   display: flex;
   justify-content: space-between;
-  font-size: 8px;
+  font-size: 10px;
   color: var(--muted);
 }
 .impact-strip {
@@ -499,7 +499,7 @@ h1 {
 }
 .impact-strip span {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 7px;
   line-height: 1.6;
@@ -508,7 +508,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   padding: 23px 0 0;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1.3px;
   color: var(--muted);
 }
@@ -533,7 +533,7 @@ h2 {
 .section-heading > p {
   max-width: 275px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .work-grid {
   display: grid;
@@ -565,7 +565,7 @@ h2 {
   position: absolute;
   top: 17px;
   left: 18px;
-  font-size: 9px;
+  font-size: 11px;
   color: var(--muted);
 }
 .chart-bars {
@@ -587,7 +587,7 @@ h2 {
   position: absolute;
   bottom: 16px;
   right: 17px;
-  font: 9px monospace;
+  font: 11px monospace;
   padding: 7px 10px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -659,7 +659,7 @@ h2 {
   padding: 23px;
 }
 .work-content .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 h3 {
@@ -672,7 +672,7 @@ h3 {
 }
 .work-content p {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .tags {
   display: flex;
@@ -682,7 +682,7 @@ h3 {
 }
 .tags span {
   font:
-    9px/1.5 ui-monospace,
+    11px/1.5 ui-monospace,
     monospace;
   padding: 5px 8px;
   border: 1px solid var(--line);
@@ -695,7 +695,7 @@ details {
   padding-top: 14px;
 }
 summary {
-  font-size: 11px;
+  font-size: 13px;
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -741,16 +741,16 @@ details[open] summary > span {
   margin-top: 17px;
 }
 .company-panel p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   margin: 8px 0 18px;
 }
 .company-panel > .mono {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .company-note {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   border-left: 2px solid var(--accent);
   padding-left: 17px;
@@ -783,7 +783,7 @@ details[open] summary > span {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font: 9px/1.7 monospace;
+  font: 11px/1.7 monospace;
   color: var(--muted);
 }
 .job h3 {
@@ -791,7 +791,7 @@ details[open] summary > span {
   font-size: 23px;
 }
 .job-summary {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--accent);
   margin-bottom: 16px;
 }
@@ -802,7 +802,7 @@ details[open] summary > span {
 .job li {
   padding-left: 4px;
   margin-bottom: 11px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.85;
   color: var(--muted);
 }
@@ -826,7 +826,7 @@ details[open] summary > span {
   border: 1px solid var(--line);
   background: none;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 .filters button.selected {
   background: var(--accent);
@@ -858,7 +858,7 @@ details[open] summary > span {
   font: 22px monospace;
 }
 .skill-card > p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   margin-top: 14px;
   min-height: 42px;
@@ -877,13 +877,13 @@ details[open] summary > span {
   line-height: 1.5;
 }
 .credentials p {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
   margin-bottom: 8px;
 }
 .credentials .mono,
 .text-link {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .credentials a:hover .text-link {
@@ -906,21 +906,21 @@ details[open] summary > span {
   letter-spacing: -2px;
 }
 .contact-layout p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
 }
 .email-link {
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 20px;
   overflow-wrap: anywhere;
 }
 .copy-button {
   background: none;
   color: var(--muted);
-  font: 10px monospace;
+  font: 12px monospace;
   padding: 12px 0;
 }
 .social-links {
@@ -928,7 +928,7 @@ details[open] summary > span {
   gap: 35px;
   border-top: 1px solid var(--line);
   padding-top: 24px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .social-links span {
   color: var(--muted);
@@ -941,10 +941,10 @@ footer {
   gap: 20px;
   min-height: 100px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 footer .mono {
-  font-size: 8px;
+  font-size: 10px;
 }
 .reveal {
   opacity: 0;
@@ -1073,7 +1073,7 @@ footer .mono {
     width: 120px;
   }
   .hero-description {
-    font-size: 14px;
+    font-size: 16px;
   }
   .impact-strip {
     grid-template-columns: repeat(2, 1fr);
@@ -1196,7 +1196,7 @@ footer .mono {
     grid-template-columns: 1fr;
   }
   .hero-bottom {
-    font-size: 7px;
+    font-size: 9px;
     letter-spacing: 0.5px;
   }
   .system-node {
@@ -1211,13 +1211,13 @@ footer .mono {
     padding-right: 14px;
   }
   .map-heading .eyebrow {
-    font-size: 8px;
+    font-size: 10px;
   }
   .tiny-label {
-    font-size: 6px;
+    font-size: 8px;
   }
   .window-footer {
-    font-size: 7px;
+    font-size: 9px;
   }
   .job-meta {
     flex-direction: column;
@@ -1228,13 +1228,13 @@ footer .mono {
   }
   .social-links {
     gap: 20px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .social-links span {
     margin-left: 3px;
   }
   .email-link {
-    font-size: 14px;
+    font-size: 16px;
   }
   .nav-resume {
     padding: 8px 10px;
@@ -1246,10 +1246,10 @@ footer .mono {
     padding-left: 20px;
   }
   .impact-strip span {
-    font-size: 9px;
+    font-size: 11px;
   }
   .contact-section .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 1px;
   }
 }
